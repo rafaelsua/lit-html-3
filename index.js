@@ -4,7 +4,7 @@ import {html, render} from 'lit-html';
 const items = [['A', 'Aceyalone', 'Aesop Rock', 'Angel Haze', 'Atmosphere'],['B','Babbletron','Blackalicious','Bike For Three','Black Sheep','Blueprint'],['C','Cecil Otter','Chali 2na','Chance The Rapper','Common Market','Cool Calm Pete'],['D','Danger Doom','Darc Mind','Dem Atlas','Dessa']]
 
 
-const myTemplate = ()=> html`
+const myTemplateOld = ()=> html`
   <div class="sticky-slide">
   <dl>
          <dt>A</dt>
@@ -29,6 +29,22 @@ const myTemplate = ()=> html`
          <dd>Darc Mind</dd>
          <dd>Dem Atlas</dd>
          <dd>Dessa</dd>
+  </dl>
+</div>
+`;
+
+const myTemplate = ()=> html`
+  <div class="sticky-slide">
+  <dl>
+    ${items.map((item) => html `
+        ${item.map((index) => html `
+          ${index.length == 1
+            ? html `<dt>${index}</dt>`
+            : html `<dd>${index}</dd>`
+          }
+
+        `)};
+    `)};
   </dl>
 </div>
 `;
